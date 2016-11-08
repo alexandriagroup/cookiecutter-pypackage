@@ -1,49 +1,70 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+import sys
+import re
+import os.path as op
 
 
-try:
-    from setuptools import setup
-except ImportError:
-    from distutils.core import setup
+from codecs import open
+from setuptools import setup, find_packages
 
 
-with open('README.rst') as readme_file:
-    readme = readme_file.read()
+def read(fname):
+    ''' Return the file content. '''
+    here = op.abspath(op.dirname(__file__))
+    with open(op.join(here, fname), 'r', 'utf-8') as fd:
+        return fd.read()
 
-with open('HISTORY.rst') as history_file:
-    history = history_file.read().replace('.. :changelog:', '')
+readme = read('README.rst')
+changelog = read('CHANGES.rst').replace('.. :changelog:', '')
 
 requirements = [
     # TODO: put package requirements here
 ]
 
-test_requirements = [
-    # TODO: put package test requirements here
-]
+if sys.version_info[0] == 2:
+    # TODO: put python2-only package requirements
+    # requirements.append('example-package')
+    pass
+
+version = ''
+version = re.search(r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]',
+                    read(op.join('{{ cookiecutter.package_name }}', '__init__.py')),
+                    re.MULTILINE).group(1)
+
+if not version:
+    raise RuntimeError('Cannot find version information')
+
+{%- set license_classifiers = {
+    'MIT license': 'License :: OSI Approved :: MIT License',
+    'BSD license': 'License :: OSI Approved :: BSD License',
+    'ISC license': 'License :: OSI Approved :: ISC License (ISCL)',
+    'Apache Software License 2.0': 'License :: OSI Approved :: Apache Software License',
+    'GNU General Public License v3': 'License :: OSI Approved :: GNU General Public License v3 (GPLv3)'
+} %}
 
 setup(
     name='{{ cookiecutter.repo_name }}',
-    version='{{ cookiecutter.version }}',
-    description="{{ cookiecutter.project_short_description }}",
-    long_description=readme + '\n\n' + history,
-    author="{{ cookiecutter.full_name }}",
+    author='{{ cookiecutter.full_name.replace('\"', '\\\"') }}',
     author_email='{{ cookiecutter.email }}',
-    url='https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.repo_name }}',
-    packages=[
-        '{{ cookiecutter.repo_name }}',
-    ],
-    package_dir={'{{ cookiecutter.repo_name }}':
-                 '{{ cookiecutter.repo_name }}'},
-    include_package_data=True,
+    version=version,
+    url='https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.github_repo_name }}',
+    packages=find_packages(),
     install_requires=requirements,
-    license="BSD",
+    include_package_data=True,
+{%- if cookiecutter.open_source_license in license_classifiers %}
+    license='{{ cookiecutter.open_source_license }}',
+{%- endif %}
     zip_safe=False,
+    description='{{ cookiecutter.project_short_description }}',
+    long_description=readme + '\n\n' + changelog,
     keywords='{{ cookiecutter.repo_name }}',
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
         'Intended Audience :: Developers',
-        'License :: OSI Approved :: BSD License',
+{%- if cookiecutter.open_source_license in license_classifiers %}
+        '{{ license_classifiers[cookiecutter.open_source_license] }}',
+{%- endif %}
         'Natural Language :: English',
         "Programming Language :: Python :: 2",
         'Programming Language :: Python :: 2.6',
@@ -51,7 +72,6 @@ setup(
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
     ],
-    test_suite='tests',
-    tests_require=test_requirements
 )
