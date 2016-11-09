@@ -20,14 +20,8 @@
     :target: https://readthedocs.org/projects/{{ cookiecutter.github_repo_name }}/?badge=latest
     :alt: Documentation Status
 
-.. image:: https://landscape.io/github/{{ cookiecutter.github_username }}/{{ cookiecutter.github_repo_name }}/master/landscape.svg?style=flat
-    :target: https://landscape.io/github/{{ cookiecutter.github_username }}/{{ cookiecutter.github_repo_name }}/master
-    :alt: Code Health
 {%- endif %}
 
-.. image:: https://pyup.io/repos/github/{{ cookiecutter.github_username }}/{{ cookiecutter.github_repo_name }}/shield.svg
-     :target: https://pyup.io/repos/github/{{ cookiecutter.github_username }}/{{ cookiecutter.github_repo_name }}/
-     :alt: Updates
 
 {{ cookiecutter.project_short_description}}
 
