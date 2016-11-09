@@ -2,6 +2,10 @@
 Cookiecutter PyPackage
 ======================
 
+.. image:: https://img.shields.io/travis/alexandriagroup/cookiecutter-pypackage.svg
+    :target: https://travis-ci.org/alexandriagroup/cookiecutter-pypackage
+    :alt: Linux build status on Travis CI
+
 Cookiecutter_ template for a Python package.
 
 * GitHub repo: https://github.com/alexandriagroup/cookiecutter-pypackage/
@@ -20,20 +24,6 @@ Features
 
 .. _Cookiecutter: https://github.com/audreyr/cookiecutter
 
-Build Status
-------------
-
-Linux:
-
-.. image:: https://img.shields.io/travis/alexandriagroup/cookiecutter-pypackage.svg
-    :target: https://travis-ci.org/alexandriagroup/cookiecutter-pypackage
-    :alt: Linux build status on Travis CI
-
-Windows:
-
-.. image:: https://ci.appveyor.com/api/projects/status/github/alexandriagroup/cookiecutter-pypackage?branch=master
-    :target: https://ci.appveyor.com/project/alexandriagroup/cookiecutter-pypackage/branch/master
-    :alt: Windows build status on Appveyor
 
 Quickstart
 ----------
