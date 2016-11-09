@@ -54,9 +54,9 @@ clean-test:  ## Eemove test and coverage artifacts
 	rm -fr htmlcov/
 
 test:  ## Run tests quickly with the default Python
-	py.test --verbose
+	py.test
 
-testall:  ## Run tests on every Python version with tox
+test-all:  ## Run tests on every Python version with tox
 	tox
 
 coverage: ## Check code coverage quickly with the default Python
