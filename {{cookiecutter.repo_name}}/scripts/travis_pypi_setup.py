@@ -7,7 +7,7 @@
 from __future__ import print_function
 import base64
 import json
-import os
+import os.path as op
 from getpass import getpass
 import yaml
 from cryptography.hazmat.primitives.serialization import load_pem_public_key
@@ -22,8 +22,8 @@ except:
 
 
 GITHUB_REPO = "{{ cookiecutter.github_username }}/{{ cookiecutter.repo_name }}"  # noqa
-TRAVIS_CONFIG_FILE = os.path.join(
-    os.path.dirname(os.path.abspath(__file__)), '.travis.yml')
+TRAVIS_CONFIG_FILE = op.join(op.dirname(op.abspath(__file__)),
+                             '..', '.travis.yml')
 
 
 def load_key(pubkey):
