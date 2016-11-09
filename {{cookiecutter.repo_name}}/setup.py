@@ -49,7 +49,11 @@ setup(
     author_email='{{ cookiecutter.email }}',
     version=version,
     url='https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.github_repo_name }}',
-    packages=find_packages(),
+    packages=[
+        '{{ cookiecutter.package_name }}',
+    ],
+    package_dir={'{{ cookiecutter.package_name }}':
+                 '{{ cookiecutter.package_name }}'},
     install_requires=requirements,
     include_package_data=True,
 {%- if cookiecutter.open_source_license in license_classifiers %}
