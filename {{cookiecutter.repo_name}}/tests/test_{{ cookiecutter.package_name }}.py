@@ -8,21 +8,24 @@ test_{{ cookiecutter.package_name }}
 
 Tests for `{{ cookiecutter.package_name }}` module.
 """
-
-import unittest
+import pytest
 
 from {{ cookiecutter.package_name }} import {{ cookiecutter.package_name }}
 
 
-class Test{{ cookiecutter.package_name | replace("_", " ") | title | replace(" ", "") }}(object):
+@pytest.fixture
+def response():
+    """Sample pytest fixture.
+    See more at: http://doc.pytest.org/en/latest/fixture.html
+    """
+    # import requests
+    # return requests.get('https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.github_repo_name }}')
+    pass
 
-    @classmethod
-    def setup_class(cls):
-        pass
 
-    def test_something(self):
-        pass
-
-    @classmethod
-    def teardown_class(cls):
-        pass
+def test_content(response):
+    """Sample pytest test function with the pytest fixture as an argument.
+    """
+    # from bs4 import BeautifulSoup
+    # assert 'GitHub' in BeautifulSoup(response.content).title.string
+    pass
