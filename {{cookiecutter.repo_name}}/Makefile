@@ -80,6 +80,9 @@ dist: clean  ## Package
 	python setup.py bdist_wheel
 	ls -l dist
 
+servedocs: docs ## compile the docs watching for changes
+	watchmedo shell-command -p '*.rst' -c '$(MAKE) -C docs html' -R -D .
+
 release: clean  ## Package and upload a release
 	python setup.py register
 	python setup.py sdist upload
