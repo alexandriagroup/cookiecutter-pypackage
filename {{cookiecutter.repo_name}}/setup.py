@@ -6,7 +6,7 @@ import os.path as op
 
 
 from codecs import open
-from setuptools import setup, find_packages
+from setuptools import setup
 
 
 def read(fname):
@@ -18,12 +18,16 @@ def read(fname):
 readme = read('README.rst')
 changelog = read('CHANGES.rst').replace('.. :changelog:', '')
 
-requirements = [
-    # TODO: put package requirements here
-]
+requirements = read('requirements.txt').split()
 
 if sys.version_info[0] == 2:
     # TODO: put python2-only package requirements
+    # requirements.append('example-package')
+    pass
+
+
+if sys.version_info[0] == 3:
+    # TODO: put python3-only package requirements
     # requirements.append('example-package')
     pass
 
